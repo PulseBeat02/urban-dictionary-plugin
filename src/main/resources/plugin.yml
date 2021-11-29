@@ -1,0 +1,11 @@
+name: UrbanDictionaryPlugin
+version: 1.0.0
+main: io.github.pulsebeat02.urbandictionaryplugin.UrbanDictionaryPlugin
+api-version: 1.17
+authors: [ PulseBeat02 ]
+description: A plugin that allows you to see the definition of a term on Urban Dictionary with a simple command!
+website: https://github.com/PulseBeat02
+commands:
+  urban:
+    permission: urbandictionaryplugin.urban
+    description: Runs the Urban Dictionary command
