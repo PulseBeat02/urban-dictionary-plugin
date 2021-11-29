@@ -116,13 +116,13 @@ public interface Locale {
 
   static @NotNull Component createNextDefinition(@NotNull final String word, final int index) {
     return text("[Next Definition]",
-        style(GOLD, BOLD, text("Next", GOLD).asHoverEvent(),
+        style(GOLD, BOLD, text("Click to view the next definition", GOLD).asHoverEvent(),
             runCommand(URBAN_CMD.formatted(word, index + 1))));
   }
 
   static @NotNull Component createPreviousDefinition(@NotNull final String word, final int index) {
     return text("[Previous Definition]",
-        style(GOLD, BOLD, text("Previous", GOLD).asHoverEvent(),
+        style(GOLD, BOLD, text("Click to view the previous definition", GOLD).asHoverEvent(),
             runCommand(URBAN_CMD.formatted(word, index - 1))));
   }
 
@@ -145,7 +145,9 @@ public interface Locale {
         start = true;
       } else if (character == ']') {
         final String text = definition.substring(open, i);
-        component.append(text(text, style(GOLD, BOLD, runCommand(URBAN_CMD.formatted(text, 0)))));
+        component.append(text(text,
+            style(GOLD, BOLD, runCommand(URBAN_CMD.formatted(text, 0)),
+                text("Click to view the definition of %s".formatted(text), GOLD).asHoverEvent())));
         start = false;
       } else if (!start) {
         component.append(text(character, AQUA));
