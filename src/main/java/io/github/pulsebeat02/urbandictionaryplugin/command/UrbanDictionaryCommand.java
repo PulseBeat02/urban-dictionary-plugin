@@ -50,6 +50,7 @@ public final class UrbanDictionaryCommand implements CommandExecutor, TabComplet
   }
 
   private void handleResult(@NotNull final CommandSender sender, @NotNull final String[] args) {
+    this.plugin.getAudiences().sender(sender).sendMessage(Locale.INFO_MAKING_REQUEST.build());
     CompletableFuture.runAsync(() -> this.constructMessage(sender, args), REQUEST_EXECUTOR)
         .whenComplete((msg, exception) -> exception.printStackTrace());
   }

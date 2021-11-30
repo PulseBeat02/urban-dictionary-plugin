@@ -25,56 +25,69 @@ import org.jetbrains.annotations.NotNull;
 public interface Locale {
 
   NullComponent<Sender> PLUGIN_INIT = () ->
-      text()
-          .color(GOLD)
-          .append(text("Urban Dictionary Plugin is loading... - Version v1.0.0"))
-          .build();
+      format(
+          text()
+              .color(GOLD)
+              .append(text("Urban Dictionary Plugin is loading... - Version v1.0.0"))
+              .build());
 
   NullComponent<Sender> PLUGIN_FINISH_INIT = () ->
-      text().color(GOLD)
-          .append(text("Urban Dictionary Plugin finished loading!"))
-          .build();
+      format(
+          text().color(GOLD)
+              .append(text("Urban Dictionary Plugin finished loading!"))
+              .build());
 
   NullComponent<Sender> PLUGIN_SHUTDOWN = () ->
-      text()
-          .color(GOLD)
-          .append(text("Urban Dictionary Plugin is shutting down..."))
-          .build();
+      format(
+          text()
+              .color(GOLD)
+              .append(text("Urban Dictionary Plugin is shutting down..."))
+              .build());
 
   NullComponent<Sender> PLUGIN_FINISH_SHUTDOWN = () ->
-      text()
-          .color(GOLD)
-          .append(text("Urban Dictionary Plugin finished shutting down!"))
-          .build();
+      format(
+          text()
+              .color(GOLD)
+              .append(text("Urban Dictionary Plugin finished shutting down!"))
+              .build());
 
   NullComponent<Sender> PLUGIN_PREFIX = () ->
-      text()
-          .color(AQUA)
-          .append(
-              text('['), text("Urban Dictionary Plugin", GOLD), text(']'), space(), text("»", GRAY))
-          .build();
+      format(
+          text()
+              .color(AQUA)
+              .append(
+                  text('['), text("Urban Dictionary Plugin", GOLD), text(']'), space(),
+                  text("»", GRAY))
+              .build());
 
   NullComponent<Sender> INSUFFICIANT_PERMISSIONS = () ->
-      text()
-          .color(RED)
-          .append(text("You do not have sufficient permissions to execute this command!"))
-          .build();
+      format(
+          text()
+              .color(RED)
+              .append(text("You do not have sufficient permissions to execute this command!"))
+              .build());
 
   NullComponent<Sender> INSUFFICIANT_ARGUMENTS = () ->
-      text()
-          .color(RED)
-          .append(text(
-              "You must specify at least one argument for the word or phrase you choose! (/urban [phrase with spaces] [optional index]"))
-          .build();
+      format(
+          text()
+              .color(RED)
+              .append(text(
+                  "You must specify at least one argument for the word or phrase you choose! (/urban [phrase with spaces] [optional index]"))
+              .build());
 
-  NullComponent<Sender> INVALID_WORD = () -> text("The word you put in is not on Urban Dictionary!",
-      RED);
+  NullComponent<Sender> INVALID_WORD = () -> format(
+      text("The word you put in is not on Urban Dictionary!",
+          RED));
 
-  NullComponent<Sender> HIGH_INDEX_DEFINITION = () -> text("There are not as many definitions!",
-      RED);
+  NullComponent<Sender> HIGH_INDEX_DEFINITION = () -> format(
+      text("There are not as many definitions!",
+          RED));
 
-  NullComponent<Sender> LOW_INDEX_DEFINITION = () -> text(
-      "The definition index cannot be negative!", RED);
+  NullComponent<Sender> LOW_INDEX_DEFINITION = () -> format(text(
+      "The definition index cannot be negative!", RED));
+
+  NullComponent<Sender> INFO_MAKING_REQUEST = () -> format(
+      text("Creating Urban Dictionary Request...", GOLD));
 
   String URBAN_CMD = "/urban %s %s";
 
@@ -100,7 +113,7 @@ public interface Locale {
     final String date = definition.getDateWritten();
     final String thumbsUp = definition.getThumbsUp();
     final String thumbsDown = definition.getThumbsDown();
-    final String text = definition.getDefinition();
+    final String text = definition.getDefinition().replaceAll("\r", "");
     final Style style = style(GOLD, BOLD);
 
     return join(separator(newline()),
