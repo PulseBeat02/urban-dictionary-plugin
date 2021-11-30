@@ -76,10 +76,12 @@ public final class UrbanDictionaryCommand implements CommandExecutor, TabComplet
 
   private @NotNull Optional<Integer> hasIndex(@NotNull final String @NotNull [] args) {
     try {
-      return Optional.of(Integer.parseInt(args[args.length - 1]));
+      if (args.length != 1) {
+        return Optional.of(Integer.parseInt(args[args.length - 1]));
+      }
     } catch (final NumberFormatException e) {
-      return Optional.empty();
     }
+    return Optional.empty();
   }
 
   private @NotNull String getApiResponse(@NotNull final String[] query) {

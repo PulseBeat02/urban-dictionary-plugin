@@ -80,6 +80,10 @@ public interface Locale {
 
   BiComponent<Sender, UrbanDictionaryRequest, Integer> URBAN_DICTIONARY_MESSAGE = (request, index) -> {
 
+    if (request == null) {
+      return INVALID_WORD.build();
+    }
+
     final Definition[] definitions = request.getList();
 
     if (definitions.length == 0) {
