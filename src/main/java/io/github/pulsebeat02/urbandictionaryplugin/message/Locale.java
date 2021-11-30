@@ -100,7 +100,7 @@ public interface Locale {
     final Style style = style(GOLD, BOLD);
 
     return join(separator(newline()),
-        join(separator(space()), text("Word", style), text(word)),
+        join(separator(space()), text("Word", style), text(word, AQUA)),
         join(separator(space()), text("Author", style), text(author, AQUA)),
         join(separator(space()), text("Date", style), text(date, AQUA)),
         join(separator(space()), text("Rating", style),
